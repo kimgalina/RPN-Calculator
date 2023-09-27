@@ -14,6 +14,7 @@ public class Viewer {
     public Viewer(){
         controller = new Controller(this);
     }
+
     private JButton createJButton(String btnText, int x, int y, int width,int height,Font font,String actionCommand){
         JButton btn = new JButton(btnText);
         btn.setBounds(x,y,width,height);
@@ -23,18 +24,24 @@ public class Viewer {
         btn.addActionListener(controller);
         return btn;
     }
+
+    private JTextField createJTextField(int x,int y,int width,int height,Color backgroundColor, Font font){
+        JTextField tField = new JTextField("0");
+        tField.setBounds(x,y,width,height);
+        tField.setFont(font);
+        tField.setBackground(backgroundColor);
+        tField.setForeground(Color.WHITE);
+        tField.setBorder(null);
+        return tField;
+    }
     public void startApplication(){
 
         Font font = new Font("TimesRoman",Font.BOLD,30);
+        Color backgroundColor = new Color(48, 49, 54);
 
-        result = new JTextField("0");
-        //result.setBackground(Color.BLACK);
-        result.setBounds(50,50,430,60);
-        result.setFont(font);
+        result = createJTextField(50,50,430,60,backgroundColor,font);
+        expression = createJTextField(50,110,430,60,backgroundColor,font);
 
-        expression = new JTextField("0");
-        expression.setBounds(50,110,430,60);
-        expression.setFont(font);
 
         JButton btn9 = createJButton("9",50,180,100,70,font,"9");
         JButton btn8 = createJButton("8",160,180,100,70,font,"8");
@@ -50,18 +57,18 @@ public class Viewer {
         JButton btn3 = createJButton("3",50,340,100,70,font,"3");
         JButton btn2 = createJButton("2",160,340,100,70,font,"2");
         JButton btn1 = createJButton("1",270,340,100,70,font,"1");
-        JButton btnDivide = createJButton("\u00f7",380,340,100,70,font,"/");
+        JButton btnDivide = createJButton("\u00f7",380,340,100,70,font,"divide");
 
 
-        JButton btnBracket1 = createJButton("(",50,420,100,70,font,"(");
+        JButton btnBracket1 = createJButton("(",50,420,100,70,font,"bracket1");
         JButton btn0 = createJButton("0",160,420,100,70,font,"0");
-        JButton btnBracket2 = createJButton(")",270,420,100,70,font,")");
-        JButton btnMultiply = createJButton("\u00d7",380,420,100,70,font,"*");
+        JButton btnBracket2 = createJButton(")",270,420,100,70,font,"bracket2");
+        JButton btnMultiply = createJButton("\u00d7",380,420,100,70,font,"multiply");
 
         JButton btnC = createJButton("C",50,500,100,70,font,"clear");
-        JButton btnPlus = createJButton("+",160,500,100,70,font,"+");
-        JButton btnMinus = createJButton("-",270,500,100,70,font,"-");
-        JButton btnEqual = createJButton("=",380,500,100,70,font,"=");
+        JButton btnPlus = createJButton("+",160,500,100,70,font,"plus");
+        JButton btnMinus = createJButton("-",270,500,100,70,font,"minus");
+        JButton btnEqual = createJButton("=",380,500,100,70,font,"equal");
 
 
 
@@ -100,7 +107,7 @@ public class Viewer {
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         frame.setSize(550,750);
         frame.setLayout(null);
-        frame.getContentPane().setBackground(Color.BLACK);
+        frame.getContentPane().setBackground(backgroundColor);
         frame.setLocation(700,200);
         frame.setVisible(true);
 
