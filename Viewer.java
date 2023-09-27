@@ -3,6 +3,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Font;
 
 
 public class Viewer {
@@ -13,91 +14,64 @@ public class Viewer {
     public Viewer(){
         controller = new Controller(this);
     }
+    private JButton createJButton(String btnText, int x, int y, int width,int height,Font font,String actionCommand){
+        JButton btn = new JButton(btnText);
+        btn.setBounds(x,y,width,height);
+        btn.setFont(font);
+        btn.setBackground(Color.GRAY);
+        btn.setActionCommand(actionCommand);
+        btn.addActionListener(controller);
+        return btn;
+    }
     public void startApplication(){
 
+        Font font = new Font("TimesRoman",Font.BOLD,30);
+
         result = new JTextField("0");
-        //result.setForeground(Color.BLACK);
+        //result.setBackground(Color.BLACK);
         result.setBounds(50,50,430,60);
+        result.setFont(font);
 
         expression = new JTextField("0");
         expression.setBounds(50,110,430,60);
+        expression.setFont(font);
 
-        JButton btn9 = new JButton("9");
-        btn9.setBounds(50,180,100,70);
+        JButton btn9 = createJButton("9",50,180,100,70,font,"9");
+        JButton btn8 = createJButton("8",160,180,100,70,font,"8");
+        JButton btn7 = createJButton("7",270,180,100,70,font,"7");
+        JButton btnDel = createJButton("\u232b",380,180,100,70,font,"delete");
 
-        JButton btn8 = new JButton("8");
-        btn8.setBounds(160,180,100,70);
-
-        JButton btn7 = new JButton("7");
-        btn7.setBounds(270,180,100,70);
-
-        JButton btnDel = new JButton("\u232b");
-        btnDel.setBounds(380,180,100,70);
-
+        JButton btn6 = createJButton("6",50,260,100,70,font,"6");
+        JButton btn5 = createJButton("5",160,260,100,70,font,"5");
+        JButton btn4 = createJButton("4",270,260,100,70,font,"4");
+        JButton btnDot = createJButton(".",380,260,100,70,font,".");
 
 
-        JButton btn6 = new JButton("6");
-        btn6.setBounds(50,260,100,70);
-
-        JButton btn5 = new JButton("5");
-        btn5.setBounds(160,260,100,70);
-
-        JButton btn4 = new JButton("4");
-        btn4.setBounds(270,260,100,70);
-
-        JButton btnDot = new JButton(".");
-        btnDot.setBounds(380,260,100,70);
+        JButton btn3 = createJButton("3",50,340,100,70,font,"3");
+        JButton btn2 = createJButton("2",160,340,100,70,font,"2");
+        JButton btn1 = createJButton("1",270,340,100,70,font,"1");
+        JButton btnDivide = createJButton("\u00f7",380,340,100,70,font,"/");
 
 
+        JButton btnBracket1 = createJButton("(",50,420,100,70,font,"(");
+        JButton btn0 = createJButton("0",160,420,100,70,font,"0");
+        JButton btnBracket2 = createJButton(")",270,420,100,70,font,")");
+        JButton btnMultiply = createJButton("\u00d7",380,420,100,70,font,"*");
 
-        JButton btn3 = new JButton("3");
-        btn3.setBounds(50,340,100,70);
-
-        JButton btn2 = new JButton("2");
-        btn2.setBounds(160,340,100,70);
-
-        JButton btn1 = new JButton("1");
-        btn1.setBounds(270,340,100,70);
-
-        JButton btnDivide = new JButton("\u00f7");
-        btnDivide.setBounds(380,340,100,70);
-
-
-        JButton btnBracket1 = new JButton("(");
-        btnBracket1.setBounds(50,420,100,70);
-
-        JButton btn0 = new JButton("0");
-        btn0.setBounds(160,420,100,70);
-
-        JButton btnBracket2 = new JButton(")");
-        btnBracket2.setBounds(270,420,100,70);
-
-        JButton btnMultiply = new JButton("\u00d7");
-        btnMultiply.setBounds(380,420,100,70);
-
-
-        JButton btnC = new JButton("C");
-        btnC.setBounds(50,500,100,70);
-
-        JButton btnPlus = new JButton("+");
-        btnPlus.setBounds(160,500,100,70);
-
-        JButton btnMinus = new JButton("-");
-        btnMinus.setBounds(270,500,100,70);
-
-        JButton btnEqual = new JButton("=");
-        btnEqual.setBounds(380,500,100,70);
+        JButton btnC = createJButton("C",50,500,100,70,font,"clear");
+        JButton btnPlus = createJButton("+",160,500,100,70,font,"+");
+        JButton btnMinus = createJButton("-",270,500,100,70,font,"-");
+        JButton btnEqual = createJButton("=",380,500,100,70,font,"=");
 
 
 
 
 
         JFrame frame = new JFrame("RPN Calculator");
-        frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-        frame.setSize(550,750);
-        frame.setLayout(null);
+
         frame.add(result);
         frame.add(expression);
+
         frame.add(btn9);
         frame.add(btn8);
         frame.add(btn7);
@@ -123,8 +97,11 @@ public class Viewer {
         frame.add(btnEqual);
         frame.add(btnC);
 
-
-
+        frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        frame.setSize(550,750);
+        frame.setLayout(null);
+        frame.getContentPane().setBackground(Color.BLACK);
+        frame.setLocation(700,200);
         frame.setVisible(true);
 
     }

@@ -8,9 +8,10 @@ public class Controller implements ActionListener{
         model = new Model(viewer);
     }
 
+    //The single argument to the method is an ActionEvent object that gives information about the event and its source.
     public void actionPerformed(ActionEvent event){
-        
-
+        String command = event.getActionCommand();
+        model.doAction(command);
 
 
     }
