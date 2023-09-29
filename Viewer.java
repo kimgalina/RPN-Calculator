@@ -15,6 +15,11 @@ public class Viewer {
         controller = new Controller(this);
     }
 
+    public void update(String result,String expression){
+        this.result.setText(result);
+        this.expression.setText(expression);
+    }
+
     private RoundedButton createJButton(String btnText, int x, int y, int width,int height,Font font,String actionCommand,Color buttonColor,
                                     Color btnTextColor){
 
@@ -73,9 +78,9 @@ public class Viewer {
         RoundedButton btnDivide = createJButton("\u00f7",350,430,100,70,font,"divide",buttonColor2,btnTextBlue);
 
 
-        RoundedButton btnBracket1 = createJButton("(",20,510,100,70,font,"bracket1",buttonColor1,btnTextBlue);
+        RoundedButton btnBracket1 = createJButton("(",20,510,100,70,font,"(",buttonColor1,btnTextBlue);
         RoundedButton btn0 = createJButton("0",130,510,100,70,font,"0",buttonColor1,btnTextBlue);
-        RoundedButton btnBracket2 = createJButton(")",240,510,100,70,font,"bracket2",buttonColor1,btnTextBlue);
+        RoundedButton btnBracket2 = createJButton(")",240,510,100,70,font,")",buttonColor1,btnTextBlue);
         RoundedButton btnMultiply = createJButton("\u00d7",350,510,100,70,font,"multiply",buttonColor2,btnTextBlue);
 
         RoundedButton btnC = createJButton("C",20,590,100,70,font,"clear",buttonColor3,btnTextWhite);
