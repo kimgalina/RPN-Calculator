@@ -109,6 +109,8 @@ public class Model{
                 Double result = rpn.calculate();
                 String resultStr = resultFormat(result);
                 viewer.update(resultStr,infixString + " = ");
+                infixString = "";
+
                 return;
             default:
                 handleAction(actionCommand);
@@ -118,9 +120,23 @@ public class Model{
         viewer.update(infixString,"0");
 
     }
+    /**
+     * Converts a Double result to a formatted String, removing trailing zeros and decimal point
+     * if necessary.
+     *
+     * @param result The Double result to convert.
+     * @return The formatted result as a String.
+     */
 
     private String resultFormat(Double result){
-            //logic of formatting result
-            return Double.toString(result);
+        String stringResult = String.valueOf(result);
+        char expectedPoint = stringResult.charAt(stringResult.length() - 2);
+        char expectedZero = stringResult.charAt(stringResult.length() - 1);
+
+        if (expectedPoint == '.' && expectedZero == '0') {
+            return stringResult.substring(0, stringResult.length() - 2);
+        } else {
+            return stringResult;
+        }
     }
 }
