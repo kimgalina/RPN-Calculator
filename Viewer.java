@@ -5,22 +5,49 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Font;
 
+/**
+ * The `Viewer` class represents the graphical user interface for the RPN calculator application.
+ */
 
 public class Viewer {
-    private JTextField result;
-    private JTextField expression;
-    private Controller controller;
+    private JTextField result;     // Textfield to display result
+    private JTextField expression; //Textfield to display current expression
+    private Controller controller; // instance of 'Controller' class to handle user's actions in application
 
-    public Viewer(){
+    /**
+     * Initializes a new instance of the `Viewer` class.
+     * It creates an instance of the `Controller` for handling user interactions.
+     */
+     public Viewer(){
         controller = new Controller(this);
     }
 
-    public void update(String result,String expression){
+    /**
+   * Updates the displayed result and expression in the UI.
+   *
+   * @param result         The result of the calculation.
+   * @param expression The  expression including the current input.
+   */
+   public void update(String result,String expression){
         this.result.setText(result);
         this.expression.setText(expression);
     }
 
-    private RoundedButton createJButton(String btnText, int x, int y, int width,int height,Font font,String actionCommand,
+    /**
+     * Creates a styled button with the specified properties.
+     *
+     * @param btnText         The text displayed on the button.
+     * @param x               The X-coordinate of the button's position.
+     * @param y               The Y-coordinate of the button's position
+     * @param height          The height of the button in pixels
+     * @param width           The width of the button in pixels
+     * @param font            Font of the button's text
+     * @param actionCommand   The action command associated with the button.
+     * @param buttonColor     The color of the button
+     * @param btnTextColor    The color of the button's text
+     * @return The configured button.
+     */
+     private RoundedButton createJButton(String btnText, int x, int y, int width,int height,Font font,String actionCommand,
                                         Color buttonColor,Color btnTextColor){
 
         int cornerRadius = 50;
@@ -35,6 +62,19 @@ public class Viewer {
         return btn;
     }
 
+    /**
+     * Creates a styled textfield with the specified properties.
+     *
+     *
+     * @param x               The X-coordinate of the textfield's position.
+     * @param y               The Y-coordinate of the textfield's position
+     * @param height          The height of the textfield in pixels
+     * @param width           The width of the textfield in pixels
+     * @param backgroundColor The color of th textfield
+     * @param font            Font of the textfield's text
+     * @param txtColor        The color of the textfield's text
+     * @return The configured textfield.
+     */
     private JTextField createJTextField(int x,int y,int width,int height,Color backgroundColor, Font font,Color txtColor){
         JTextField tField = new JTextField("0");
         tField.setBounds(x,y,width,height);
@@ -45,7 +85,11 @@ public class Viewer {
         tField.setHorizontalAlignment(JTextField.RIGHT);
         return tField;
     }
-    public void startApplication(){
+
+    /**
+     * Entry point for starting the RPN calculator application.
+     */
+     public void startApplication(){
 
         Font font = new Font("TimesRoman",Font.BOLD,30);
         Font resultFont = new Font("TimesRoman",Font.BOLD,40);
@@ -56,10 +100,12 @@ public class Viewer {
         Color buttonColor3 = new Color(97, 97, 97);
         Color btnTextWhite = new Color(165, 165, 165);
         Color btnTextBlue = new Color(41, 168, 255);
-
+         // Initialize and configure  expression TextField
         expression = createJTextField(20,100,430,60,backgroundColor,expressionFont,new Color(129, 129, 129));
+         // Initialize and configure result TextField
         result = createJTextField(20,160,430,60,backgroundColor,resultFont,new Color(255,255,255));
 
+        // Create and configure buttons for various calculator operations
         RoundedButton btn9 = createJButton("9",20,270,100,70,font,"9",buttonColor1,btnTextBlue);
         RoundedButton btn8 = createJButton("8",130,270,100,70,font,"8",buttonColor1,btnTextBlue);
         RoundedButton btn7 = createJButton("7",240,270,100,70,font,"7",buttonColor1,btnTextBlue);
@@ -84,7 +130,11 @@ public class Viewer {
         RoundedButton btnPlus = createJButton("+",130,590,100,70,font,"+",buttonColor2,btnTextBlue);
         RoundedButton btnMinus = createJButton("-",240,590,100,70,font,"-",buttonColor2,btnTextBlue);
         RoundedButton btnEqual = createJButton("=",350,590,100,70,font,"equal",buttonColor2,btnTextBlue);
+
+        // creating of main UI frame of application
         JFrame frame = new JFrame("RPN Calculator");
+
+        // Add all UI elements to the frame
         frame.add(result);
         frame.add(expression);
         frame.add(btn9);
